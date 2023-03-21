@@ -1,7 +1,9 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
+import { appWithTranslation } from 'next-i18next'
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import nextI18NextConfig from '../../next-i18next.config';
 
 import { trpc } from "../utils/trpc";
 
@@ -22,4 +24,4 @@ const MyApp: AppType<{ session: Session | null }> = ({
   );
 };
 
-export default trpc.withTRPC(MyApp);
+export default trpc.withTRPC(appWithTranslation(MyApp, nextI18NextConfig));
