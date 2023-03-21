@@ -4,14 +4,14 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/layout';
 import seo from '../utils/seo';
 
-const Home: NextPage = () => {
+const Works: NextPage = () => {
   return (
     <React.Fragment>
       <NextSeo
-        title={seo.titles.home}
-        description={seo.descriptions.home}
-        additionalLinkTags={seo.linkTags.home}
-        additionalMetaTags={seo.metaTags.home}
+        title={seo.titles.generic}
+        description={seo.descriptions.generic}
+        additionalLinkTags={seo.linkTags.generic}
+        additionalMetaTags={seo.metaTags.generic}
       />
       <div
         className="bg-heroImage relative bg-fixed bg-center bg-no-repeat bg-cover box-border"
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <Layout>
               <div className="mx-auto mt-[5%] flex flex-col justify-center my-8">
                 <h1 className="flex flex-col text-white font-sans font-bold leading-normal text-8xl">
-                  Home Content goes here
+                  Works Content goes here
                 </h1>
               </div>
             </Layout>
@@ -32,4 +32,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Works;
