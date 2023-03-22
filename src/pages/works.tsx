@@ -17,7 +17,7 @@ const Works: NextPage = () => {
         className="bg-heroImage relative bg-fixed bg-center bg-no-repeat bg-cover box-border"
       >
         <div className="w-full min-h-screen">
-          <main className="mx-auto container">
+          <main className="mx-auto w-9/12">
             <Layout>
               <div className="mx-auto mt-[5%] flex flex-col justify-center my-8">
                 <h1 className="flex flex-col text-white font-sans font-bold leading-normal text-8xl">
