@@ -1,4 +1,13 @@
 {
   "home.name": "Brian Nunez",
-  "home.title": "Software Engineer"
+  "home.title": "Software Engineer",
+  "contact.title": "Contact",
+  "contact.email.title": "Email:",
+  "contact.email": "briannunez1130@gmail.com",
+  "contact.email.mailto": "mailto:briannunez1130@gmail.com",
+  "contact.location.title": "Location:",
+  "contact.location.item-1": "Phoenix, Arizona",
+  "contact.location.item-2": "In Offce, Hybrid, or Remote",
+  "contact.subheading-1": "I'm always open to consulting/discussing for",
+  "contact.subheading-2": "work or partnerships."
 }

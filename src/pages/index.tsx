@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         className="bg-heroImage relative bg-fixed bg-center bg-no-repeat bg-cover box-border"
       >
         <div className="w-full min-h-screen">
-          <main className="mx-auto container">
+          <main className="mx-auto w-9/12">
             <Layout>
               <div className="flex flex-col justify-center items-center gap-3 mt-[8%]">
                 <div className="w-72 h-72 flex justify-center items-center">

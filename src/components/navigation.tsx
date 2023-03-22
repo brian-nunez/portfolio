@@ -34,37 +34,37 @@ function Navigation({
         </h1> */}
         <ul className="mt-4 flex flex-row gap-8 justify-center items-center">
           <Link href="/">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/' })}>
               {router.route === '/' ? <HomeIcon className="fill-white" /> : <HomeOutlineIcon />}
               Home
             </li>
           </Link>
           <Link href="/about">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/about' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/about' })}>
               <PersonIcon className={classNames({ 'fill-white': router.route === '/about' })} />
               About
             </li>
           </Link>
           <Link href="/resume">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/resume' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/resume' })}>
               {router.route === '/resume' ? <DocumentTextIcon /> : <DocumentTextOutlineIcon />}
               Resume
             </li>
           </Link>
           <Link href="/works">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/works' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/works' })}>
               {router.route === '/works' ? <BriefcaseIcon /> : <BriefcaseOutlineIcon />}
               Works
             </li>
           </Link>
           <Link href="/blogs">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/blogs' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/blogs' })}>
               <ExternalIcon />
               Blogs
             </li>
           </Link>
           <Link href="/contact">
-            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-sans font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/contact' })}>
+            <li className={classNames("flex flex-row justify-center items-center gap-2 px-4 py-3 rounded-md text-white font-mono font-bold text-base ease-in-out duration-300 bg-neutral-700 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600", { "bg-gradient-to-tr from-green-400 to-green-600": router.route === '/contact' })}>
               <AtIcon />
               Contact
             </li>
