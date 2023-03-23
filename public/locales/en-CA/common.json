@@ -9,5 +9,15 @@
   "contact.location.item-1": "Phoenix, Arizona",
   "contact.location.item-2": "In Offce, Hybrid, or Remote",
   "contact.subheading-1": "I'm always open to consulting/discussing for",
-  "contact.subheading-2": "work or partnerships."
+  "contact.subheading-2": "work or partnerships.",
+  "contact.field.name.label": "Name *",
+  "contact.field.name.error": "Oops! Please enter in a valid name (letters and spaces)",
+  "contact.field.email.label": "Email *",
+  "contact.field.email.error": "Oops! Please enter in a valid email",
+  "contact.field.message.label": "Message *",
+  "contact.field.message.error": "Oops! Please enter in a message",
+  "contact.form.success": "Successfully sent message!",
+  "contact.form.conflict.error": "You have already sent a message! If you want to contact me again, email me directly.",
+  "contact.form.error": "There was an error sending message.",
+  "contact.submit.label": "Submit"
 }

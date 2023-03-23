@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
+import React, { useState } from 'react';
 import { type NextPage } from 'next';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
@@ -13,6 +13,7 @@ import ContentBox from '../components/content-box';
 import AtIcon from '../components/icons/at';
 import locationImage from '../assets/location.png';
 import nextI18nextConfig from '../../next-i18next.config';
+import { trpc } from '../utils/trpc';
 
 type TFormValues = {
   name: string;
@@ -21,11 +22,33 @@ type TFormValues = {
 };
 
 const Contact: NextPage = () => {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { mutate } = trpc.contact.addContact.useMutation({
+    onMutate() {
+      setSuccessMessage(null);
+      setErrorMessage(null);
+    },
+    onSuccess() {
+      setSuccessMessage('contact.form.success');
+      reset();
+    },
+    onError(error) {
+      switch (error.data?.code) {
+        case 'CONFLICT':
+          setErrorMessage('contact.form.conflict.error');
+          break;
+        default:
+          setErrorMessage('contact.form.error');
+      }
+    }
+  });
   const { t } = useTranslation('common');
   const {
     register,
     handleSubmit,
     reset,
+    formState,
   } = useForm<TFormValues>({
     defaultValues: {
       name: '',
@@ -37,7 +60,11 @@ const Contact: NextPage = () => {
   const onSubmit: SubmitHandler<TFormValues> = (values) => {
     // do stuff
     console.log(values);
-    reset();
+    mutate({
+      name: values.name,
+      email: values.email,
+      message: values.message,
+    });
   };
 
   return (
@@ -99,58 +126,83 @@ const Contact: NextPage = () => {
                         </span>
                       </h2>
                       <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="flex flex-col gap-4 my-4">
-                          <div className="relative z-0 w-full mb-6 group">
+                        <div className="flex flex-col gap-6 my-4">
+                          <div className="relative z-0 w-full group">
                             <input
                               type="text"
                               className="block py-2.5 px-0 w-full text-lg font-mono text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-green-400 peer"
                               placeholder=" "
                               maxLength={30}
-                              required
+                              autoComplete="off"
                               {...register('name', { required: true, maxLength: 30, pattern: /^\w+$/gi })}
                             />
                             <label
                               htmlFor="name"
                               className="peer-focus:font-medium font-mono absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                             >
-                              Name *
+                              {t('contact.field.name.label')}
                             </label>
+                            {formState.errors.name && (
+                              <p className="mt-2 text-sm text-red-500 font-medium">
+                                {t('contact.field.name.error')}
+                              </p>
+                            )}
                           </div>
-                          <div className="relative z-0 w-full mb-6 group">
+                          <div className="relative z-0 w-full group">
                             <input
                               type="email"
                               className="block py-2.5 px-0 w-full text-lg font-mono text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-green-400 peer"
                               placeholder=" "
                               maxLength={150}
-                              required
+                              autoComplete="off"
                               {...register('email', { required: true, maxLength: 150 })}
                             />
                             <label
                               htmlFor="email"
                               className="peer-focus:font-medium font-mono absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                             >
-                              Email *
+                              {t('contact.field.email.label')}
                             </label>
+                            {formState.errors.email && (
+                              <p className="mt-2 text-sm text-red-500 font-medium">
+                                {t('contact.field.email.error')}
+                              </p>
+                            )}
                           </div>
-                          <div className="relative z-0 w-full mb-6 group">
+                          <div className="relative z-0 w-full group">
                             <input
                               type="text"
                               className="block py-2.5 px-0 w-full text-lg font-mono text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-green-400 peer"
                               placeholder=" "
                               maxLength={300}
-                              required
+                              autoComplete="off"
                               {...register('message', { required: true, maxLength: 300 })}
                             />
                             <label
                               htmlFor="message"
                               className="peer-focus:font-medium font-mono absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-green-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                             >
-                              Message *
+                              {t('contact.field.message.label')}
                             </label>
+                            {formState.errors.message && (
+                              <p className="mt-2 text-sm text-red-500 font-medium">
+                                {t('contact.field.message.error')}
+                              </p>
+                            )}
                           </div>
                         </div>
+                        {errorMessage && (
+                          <p className="mt-2 text-sm text-red-500 font-medium">
+                            {t(errorMessage)}
+                          </p>
+                        )}
+                        {successMessage && (
+                          <p className="mt-2 text-sm text-green-500 font-medium">
+                            {t(successMessage)}
+                          </p>
+                        )}
                         <button type="submit" className="text-white bg-[#111111] border border-gray-300 focus:outline-none hover:border-green-500 hover:bg-gradient-to-tr hover:from-green-400 hover:to-green-600 focus:ring-4 focus:ring-green-400 font-semibold font-mono rounded-lg text-base px-5 py-2.5 mr-2 mb-2 mt-4">
-                          Submit
+                          {t('contact.submit.label')}
                         </button>
                       </form>
                     </ContentBox>
