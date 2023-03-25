@@ -19,5 +19,6 @@
   "contact.form.success": "Successfully sent message!",
   "contact.form.conflict.error": "You have already sent a message! If you want to contact me again, email me directly.",
   "contact.form.error": "There was an error sending message.",
-  "contact.submit.label": "Submit"
+  "contact.submit.label": "Submit",
+  "blogs.title": "Blogs"
 }

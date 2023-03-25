@@ -1,10 +1,15 @@
 import React from 'react';
 import { type NextPage } from 'next';
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Layout from '../components/layout';
 import seo from '../utils/seo';
+import ContentBox from '../components/content-box';
+import nextI18nextConfig from '../../next-i18next.config';
 
 const Blogs: NextPage = () => {
+  const { t } = useTranslation('common');
   return (
     <React.Fragment>
       <NextSeo
@@ -20,9 +25,22 @@ const Blogs: NextPage = () => {
           <main className="mx-auto w-9/12">
             <Layout>
               <div className="mx-auto mt-[5%] flex flex-col justify-center my-8">
-                <h1 className="flex flex-col text-white font-sans font-bold leading-normal text-8xl">
-                  Blogs Content goes here
-                </h1>
+                <ContentBox className="flex flex-col gap-8">
+                  <h1 className="flex flex-row justify-start items-center font-mono text-white font-bold leading-normal text-4xl after:content-[''] after:rounded after:ml-4 after:w-44 after:h-1 after:bg-gradient-to-tr after:from-green-400 after:to-green-600">
+                    {t('blogs.title')}
+                  </h1>
+                  <div className="flex gap-12">
+                    <ContentBox className="h-96 basis-1/3 border border-neutral-700 rounded-md px-8 py-8">
+
+                    </ContentBox>
+                    <ContentBox className="h-96 basis-1/3 border border-neutral-700 rounded-md px-8 py-8">
+
+                    </ContentBox>
+                    <ContentBox className="h-96 basis-1/3 border border-neutral-700 rounded-md px-8 py-8">
+
+                    </ContentBox>
+                  </div>
+                </ContentBox>
               </div>
             </Layout>
           </main>
@@ -31,5 +49,13 @@ const Blogs: NextPage = () => {
     </React.Fragment>
   );
 };
+
+export async function getStaticProps({ locale }: { locale: string; }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'], nextI18nextConfig, ['en-US', 'en-CA'])),
+    },
+  };
+}
 
 export default Blogs;
